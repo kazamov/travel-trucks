@@ -1,8 +1,12 @@
 {
-  "name": "goit-neo-react-hw-module5",
+  "name": "travel-trucks",
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "author": {
+    "name": "Zakir Nuriiev",
+    "email": "kazamov@gmail.com"
+  },
   "scripts": {
     "dev": "vite",
     "build": "vite build",

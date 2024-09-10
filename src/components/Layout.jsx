@@ -33,7 +33,7 @@ function Layout() {
           </ul>
         </nav>
       </header>
-      <main className={classes['main']}>
+      <main>
         <Outlet />
       </main>
     </>

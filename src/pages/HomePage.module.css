@@ -1,0 +1,29 @@
+.home-page {
+  background-image: image-set(url('/hero.webp') 1x, url('/hero@2x.webp') 2x);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: calc(100dvh - 4.5rem - 1px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding-left: 4rem;
+}
+
+.hero-title {
+  color: var(--inputs-color);
+  font-size: 3rem;
+  font-weight: 600;
+  line-height: 0.6667;
+  margin-bottom: 1rem;
+}
+
+.hero-text {
+  color: var(--inputs-color);
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1.3333;
+  margin-bottom: 2.5rem;
+}
