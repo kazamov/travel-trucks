@@ -1,0 +1,35 @@
+.header {
+  display: flex;
+  padding: 1.5rem 4rem;
+  border-bottom: 1px solid var(--badges-color);
+  background: var(--inputs-color);
+}
+
+.logo-link {
+  display: flex;
+  align-items: center;
+}
+
+.nav {
+  margin: 0 auto;
+}
+
+.nav-list {
+  display: flex;
+  gap: 2rem;
+}
+
+.nav-link {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text-color);
+  text-decoration: none;
+
+  &.nav-link-active {
+    color: var(--button-hover-color);
+  }
+}
+
+.main {
+  padding: 2rem;
+}
