@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import clsx from 'clsx';
 
@@ -6,6 +7,10 @@ import Button from '../components/Button';
 import classes from './HomePage.module.css';
 
 function HomePage() {
+  useEffect(() => {
+    document.title = 'Catalog | Travel Trucks';
+  }, []);
+
   return (
     <div className={classes['home-page']}>
       <h1 className={clsx(classes['hero-title'], 'h1')}>Campers of your dreams</h1>

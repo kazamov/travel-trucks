@@ -1,7 +1,7 @@
 import { createSlice, createSelector } from '@reduxjs/toolkit';
 
 import { fetchCampers, fetchCamper } from './campersOps';
-import { selectNameFilter } from './filtersSlice';
+import { selectFilters } from './filtersSlice';
 
 const campersSlice = createSlice({
   name: 'campers',
@@ -28,7 +28,7 @@ const campersSlice = createSlice({
         state.error = null;
       })
       .addCase(fetchCampers.fulfilled, (state, action) => {
-        state.items = action.payload;
+        state.items = action.payload.items;
         state.loading = false;
       })
       .addCase(fetchCampers.rejected, (state, action) => {
@@ -57,15 +57,30 @@ const campersSlice = createSlice({
 
 export const campersReducer = campersSlice.reducer;
 
-export const { selectCampers, selectLoading, selectError } = campersSlice.selectors;
+export const { selectCampers, selectLoading, selectError, selectTotal } = campersSlice.selectors;
 
 export const selectFilteredCampers = createSelector(
   selectCampers,
-  selectNameFilter,
-  (contacts, filter) => {
-    if (!filter) {
-      return contacts;
+  selectFilters,
+  (campers, filters) => {
+    if (!filters.city && !filters.equipments.length && !filters.form) {
+      return campers;
     }
-    return contacts.filter(contact => contact.name.toLowerCase().includes(filter.toLowerCase()));
+
+    return campers.filter(camper => {
+      if (filters.city && !camper.location.toLowerCase().includes(filters.city.toLowerCase())) {
+        return false;
+      }
+      if (
+        filters.equipments.length &&
+        !filters.equipments.every(equipment => camper[equipment.key] === equipment.value)
+      ) {
+        return false;
+      }
+      if (filters.form && camper.form.toLowerCase() !== filters.form.toLowerCase()) {
+        return false;
+      }
+      return true;
+    });
   },
 );
