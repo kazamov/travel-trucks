@@ -14,16 +14,10 @@
 
 .hero-title {
   color: var(--inputs-color);
-  font-size: 3rem;
-  font-weight: 600;
-  line-height: 0.6667;
   margin-bottom: 1rem;
 }
 
 .hero-text {
   color: var(--inputs-color);
-  font-size: 1.5rem;
-  font-weight: 600;
-  line-height: 1.3333;
   margin-bottom: 2.5rem;
 }

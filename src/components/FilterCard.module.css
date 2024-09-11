@@ -1,0 +1,29 @@
+.filter-card {
+  input[type='checkbox'],
+  input[type='radio'] {
+    display: none;
+  }
+
+  .filter-label {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem;
+    border: 1px solid var(--gray-light-color);
+    border-radius: 0.75rem;
+    cursor: pointer;
+    transition: border-color 0.3s ease;
+
+    .card-title {
+      color: var(--main-color);
+      text-align: center;
+    }
+  }
+
+  input[type='checkbox']:checked + .filter-label,
+  input[type='radio']:checked + .filter-label {
+    border-color: var(--button-color);
+  }
+}

@@ -4,13 +4,29 @@
   border-radius: 200px;
   background: var(--button-color);
   color: var(--white-color);
-  font-size: 1rem;
-  font-weight: 500;
-  letter-spacing: -0.08px;
   cursor: pointer;
   transition: background-color 0.3s ease;
 
-  &:hover {
+  &:hover,
+  &:focus {
     background-color: var(--button-hover-color);
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: none;
+  }
+
+  &:global(.p-button-outlined) {
+    background: transparent;
+    border: 1px solid var(--gray-light-color);
+    color: var(--main-color);
+    transition: border-color 0.3s ease;
+    padding-inline: 2rem;
+
+    &:hover,
+    &:focus {
+      border-color: var(--button-hover-color);
+    }
   }
 }

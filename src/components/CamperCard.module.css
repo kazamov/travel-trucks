@@ -1,0 +1,84 @@
+.camper-card {
+  width: 100%;
+  padding: 1.5rem;
+  border-radius: 1.25rem;
+  border: 1px solid var(--gray-light-color);
+  background: var(--white-color);
+  display: grid;
+  grid-template-columns: max-content minmax(10rem, 32.5rem);
+  column-gap: 1.5rem;
+
+  .picture {
+    object-fit: cover;
+    object-position: 55%;
+    border-radius: 10px;
+    background-color: var(--gray-light-color);
+  }
+
+  .info {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .info-section {
+    display: flex;
+    padding-top: 1.5rem;
+  }
+
+  .pt0 {
+    padding-top: 0;
+  }
+
+  .pt8 {
+    padding-top: 0.5rem;
+  }
+
+  .mt-auto {
+    margin-top: auto;
+  }
+
+  .price {
+    margin-left: auto;
+  }
+
+  .rating {
+    display: flex;
+    gap: 0.25rem;
+    align-items: center;
+
+    .rating-link {
+      color: var(--main-color);
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .location {
+    margin-left: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+  }
+
+  .description {
+    overflow: hidden;
+    color: var(--text-color);
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    line-clamp: 1;
+  }
+
+  .badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    max-width: 30rem;
+  }
+
+  .show-more-button {
+    padding-inline: 2.5rem;
+  }
+}

@@ -1,0 +1,22 @@
+.catalog-page {
+  padding: 3rem 4rem;
+  display: grid;
+  grid-template-columns: minmax(10rem, 22.5rem) minmax(10rem, 55.5rem);
+  column-gap: 4rem;
+  justify-content: center;
+
+  .filters {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .cards {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+
+  .load-more-button {
+    align-self: center;
+  }
+}

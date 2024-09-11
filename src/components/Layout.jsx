@@ -7,7 +7,7 @@ import classes from './Layout.module.css';
 function Layout() {
   const getNavLinkClasses = useCallback(
     ({ isActive }) =>
-      clsx(classes['nav-link'], {
+      clsx(classes['nav-link'], 'body2', {
         [classes['nav-link-active']]: isActive,
       }),
     [],

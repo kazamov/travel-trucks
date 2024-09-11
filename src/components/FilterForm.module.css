@@ -1,0 +1,59 @@
+.filter-form {
+  position: sticky;
+  top: 1rem;
+  display: flex;
+  flex-direction: column;
+
+  .city-label {
+    color: var(--gray-color);
+    margin-bottom: 0.5rem;
+  }
+
+  .city-input {
+    margin-bottom: 2.5rem;
+  }
+
+  .filters-label {
+    color: var(--text-color);
+    margin-bottom: 2rem;
+  }
+
+  .vehicle-equipment-section {
+    margin-bottom: 2rem;
+  }
+
+  .vehicle-type-section {
+    margin-bottom: 2.5rem;
+  }
+
+  .search-button {
+    align-self: flex-start;
+  }
+}
+
+.filters-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+
+  .filters-section-title {
+    color: var(--main-color);
+  }
+
+  .filters-section-separator {
+    border: none;
+    border-bottom: 1px solid var(--gray-light-color);
+    width: 100%;
+    margin: 0;
+  }
+
+  .filter-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem 0.75rem;
+
+    .fully-integrated-filter {
+      padding-block: 0.25rem;
+    }
+  }
+}
