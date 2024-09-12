@@ -1,10 +1,15 @@
-import { useCallback } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 import { Outlet, NavLink, Link } from 'react-router-dom';
 import clsx from 'clsx';
 
 import classes from './Layout.module.css';
+import { useSelector } from 'react-redux';
+import { selectError } from '../store/campersSlice';
+import Toast from './Toast';
 
 function Layout() {
+  const toastRef = useRef(null);
+  const errorMessage = useSelector(selectError);
   const getNavLinkClasses = useCallback(
     ({ isActive }) =>
       clsx(classes['nav-link'], 'body2', {
@@ -12,6 +17,13 @@ function Layout() {
       }),
     [],
   );
+
+  useEffect(() => {
+    if (errorMessage) {
+      toastRef.current.show({ severity: 'error', summary: 'Error', detail: errorMessage });
+    }
+  }, [errorMessage]);
+
   return (
     <>
       <header className={classes['header']}>
@@ -36,6 +48,7 @@ function Layout() {
       <main>
         <Outlet />
       </main>
+      <Toast ref={toastRef} />
     </>
   );
 }

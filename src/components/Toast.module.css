@@ -1,0 +1,5 @@
+.toast {
+  &:global(.p-toast .p-toast-message.p-toast-message-success) {
+    background: rgb(228 248 240 / 100%);
+  }
+}

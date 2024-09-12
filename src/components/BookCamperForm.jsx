@@ -1,5 +1,4 @@
-import { useCallback } from 'react';
-// import { useDispatch } from 'react-redux';
+import { useCallback, useRef } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import clsx from 'clsx';
@@ -9,9 +8,10 @@ import { InputTextarea } from 'primereact/inputtextarea';
 
 import Input from './Input';
 import Button from './Button';
+import Toast from './Toast';
+import { ArrowLeft, ArrowRight } from './Icons';
 
 import classes from './BookCamperForm.module.css';
-import { ArrowLeft, ArrowRight } from './Icons';
 
 const initialValues = {
   name: '',
@@ -27,11 +27,16 @@ const ContactSchema = Yup.object().shape({
 });
 
 function BookCamperForm({ camper }) {
-  // const dispatch = useDispatch();
+  const toastRef = useRef(null);
 
   const handleFormSubmit = useCallback(
     data => {
-      console.log(data, camper);
+      toastRef.current.show({
+        severity: 'success',
+        summary: 'Booked',
+        detail: `Hello ${data.name}. You have successfully booked ${camper.name}. All details have been sent to ${data.email}.`,
+        life: 3000,
+      });
     },
     [camper],
   );
@@ -54,7 +59,13 @@ function BookCamperForm({ camper }) {
         <Form noValidate className={classes['form']}>
           <Field name="name">
             {({ field }) => (
-              <Input name={field.name} placeholder="Name" required onChange={field.onChange} />
+              <Input
+                value={field.value}
+                name={field.name}
+                placeholder="Name"
+                required
+                onChange={field.onChange}
+              />
             )}
           </Field>
           <ErrorMessage className={classes['error-message']} name="name" component="span" />
@@ -62,6 +73,7 @@ function BookCamperForm({ camper }) {
           <Field name="email">
             {({ field }) => (
               <Input
+                value={field.value}
                 name={field.name}
                 type="email"
                 placeholder="Email"
@@ -75,6 +87,7 @@ function BookCamperForm({ camper }) {
           <Field name="bookingDate">
             {({ field }) => (
               <Calendar
+                value={field.value}
                 prevIcon={<ArrowLeft width={24} height={24} />}
                 nextIcon={<ArrowRight width={24} height={24} />}
                 locale="ir"
@@ -93,6 +106,7 @@ function BookCamperForm({ camper }) {
           <Field name="comment">
             {({ field }) => (
               <InputTextarea
+                value={field.value}
                 className={classes['input-textarea']}
                 rows={5}
                 autoResize
@@ -108,6 +122,8 @@ function BookCamperForm({ camper }) {
           </Button>
         </Form>
       </Formik>
+
+      <Toast ref={toastRef} />
     </div>
   );
 }

@@ -4,6 +4,7 @@
   background: var(--inputs-color);
   border-color: transparent;
   color: var(--main-color);
+  padding: 1.125rem;
 
   &::placeholder {
     color: var(--gray-color);
@@ -23,6 +24,7 @@
   &:global(.p-icon-field > .p-input-icon) {
     display: block;
     top: 50%;
+    left: 1.25rem;
     transform: translateY(-50%);
     width: 1.25rem;
     height: 1.25rem;
@@ -36,5 +38,9 @@
 
   &:has(.input:placeholder-shown) > :global(.p-input-icon) path {
     fill: var(--gray-color);
+  }
+
+  .input {
+    padding-left: 3rem;
   }
 }
