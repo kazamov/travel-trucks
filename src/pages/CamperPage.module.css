@@ -76,5 +76,15 @@
       visibility: visible;
       border-bottom-color: var(--button-color);
     }
+
+    :global(.p-tabview-panels) {
+      padding: 2.75rem 0 0;
+    }
+  }
+
+  .tab-panel {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 2.5rem;
   }
 }

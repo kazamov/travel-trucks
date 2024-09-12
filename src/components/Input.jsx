@@ -14,7 +14,7 @@ function Input({ icon, required, placeholder, className, ...otherProps }) {
           {...otherProps}
           placeholder={`${placeholder}${required ? '*' : ''}`}
           required={required}
-          className={clsx(classes['input'])}
+          className={clsx(classes['input'], 'body')}
         />
       </IconField>
     );
@@ -24,7 +24,7 @@ function Input({ icon, required, placeholder, className, ...otherProps }) {
       {...otherProps}
       placeholder={`${placeholder}${required ? '*' : ''}`}
       required={required}
-      className={clsx(classes['input'], className)}
+      className={clsx(classes['input'], 'body', className)}
     />
   );
 }

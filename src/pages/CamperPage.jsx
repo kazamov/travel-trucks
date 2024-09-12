@@ -1,4 +1,4 @@
-import { useEffect, useCallback } from 'react';
+import { useEffect, useCallback, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Outlet, useParams, useMatch, useNavigate } from 'react-router-dom';
 import clsx from 'clsx';
@@ -11,6 +11,7 @@ import CamperLocation from '../components/CamperLocation';
 import { FORMATTER } from '../lib/formatter';
 
 import classes from './CamperPage.module.css';
+import BookCamperForm from '../components/BookCamperForm';
 
 function CamperPage() {
   const dispatch = useDispatch();
@@ -29,6 +30,8 @@ function CamperPage() {
     },
     [id, navigate],
   );
+
+  const bookCamperForm = useMemo(() => <BookCamperForm />, []);
 
   useEffect(() => {
     document.title = 'Camper | Travel Trucks';
@@ -73,13 +76,13 @@ function CamperPage() {
       </ul>
       <p className={clsx(classes['description'], 'body')}>{camper.description}</p>
       <TabView activeIndex={selectedTab} onTabChange={tabChangeHandler} className={classes['tabs']}>
-        <TabPanel header="Features">
+        <TabPanel contentClassName={classes['tab-panel']} header="Features">
           <Outlet />
-          <div>Form</div>
+          {bookCamperForm}
         </TabPanel>
-        <TabPanel header="Reviews">
+        <TabPanel contentClassName={classes['tab-panel']} header="Reviews">
           <Outlet />
-          <div>Form</div>
+          {bookCamperForm}
         </TabPanel>
       </TabView>
     </div>
