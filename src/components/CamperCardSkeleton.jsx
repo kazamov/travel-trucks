@@ -9,8 +9,9 @@ function CamperCardSkeleton() {
       <Skeleton className={classes['picture']} width={292} height={320} />
       <div className={classes['info']}>
         <div className={clsx(classes['info-section'], classes['pt0'])}>
-          <Skeleton width={157} height={32} />
-          <Skeleton className={classes['price']} width={118} height={32} />
+          <Skeleton width={157} height={24} />
+          <Skeleton className={classes['price']} width={118} height={24} />
+          <Skeleton className={classes['favorite-button']} width={24} height={24} />
         </div>
         <div className={clsx(classes['info-section'], classes['pt8'])}>
           <Skeleton width={133} height={24} />

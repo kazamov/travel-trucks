@@ -18,7 +18,10 @@ import {
 } from './Icons';
 import { Link } from 'react-router-dom';
 import Rating from './Rating';
-import { useMemo } from 'react';
+import { useCallback, useMemo } from 'react';
+import AddToFavoriteButton from './AddToFavoriteButton';
+import { useDispatch, useSelector } from 'react-redux';
+import { addToFavorites, removeFromFavorites, selectIsFavorite } from '../store/campersSlice';
 
 const FORMATTER = new Intl.NumberFormat('en-IE', {
   style: 'currency',
@@ -29,6 +32,17 @@ const FORMATTER = new Intl.NumberFormat('en-IE', {
 });
 
 function CamperCard({ camper }) {
+  const dispatch = useDispatch();
+  const isFavorite = useSelector(selectIsFavorite(camper.id));
+
+  const handleFavoriteClick = useCallback(() => {
+    if (isFavorite) {
+      dispatch(removeFromFavorites(camper.id));
+    } else {
+      dispatch(addToFavorites(camper.id));
+    }
+  }, [dispatch, camper.id, isFavorite]);
+
   const equipments = useMemo(() => {
     const badges = [];
     if (camper.bathroom) {
@@ -73,6 +87,7 @@ function CamperCard({ camper }) {
     }
     return badges;
   }, [camper]);
+
   return (
     <div className={classes['camper-card']}>
       <img
@@ -86,6 +101,11 @@ function CamperCard({ camper }) {
         <div className={clsx(classes['info-section'], classes['pt0'])}>
           <h2 className="h2">{camper.name}</h2>
           <p className={clsx(classes['price'], 'h2')}>{FORMATTER.format(camper.price)}</p>
+          <AddToFavoriteButton
+            isFavorite={isFavorite}
+            className={classes['favorite-button']}
+            onClick={handleFavoriteClick}
+          />
         </div>
         <div className={clsx(classes['info-section'], classes['pt8'])}>
           <div className={classes['rating']}>

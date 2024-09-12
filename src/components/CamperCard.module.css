@@ -41,6 +41,10 @@
     margin-left: auto;
   }
 
+  .favorite-button {
+    margin-left: 0.75rem;
+  }
+
   .rating {
     display: flex;
     gap: 0.25rem;

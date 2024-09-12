@@ -19,7 +19,7 @@ function CatalogPage() {
 
   const [pageNumber, setPageNumber] = useState(1);
   const campers = useMemo(
-    () => campersFromStore.slice(0, pageNumber * CATALOG_PAGE_SIZE),
+    () => campersFromStore?.slice(0, pageNumber * CATALOG_PAGE_SIZE) ?? [],
     [campersFromStore, pageNumber],
   );
 
@@ -48,7 +48,7 @@ function CatalogPage() {
         {loading && <CampersListSkeleton />}
         {!loading && campers?.length > 0 && <CampersList campers={campers} />}
         {!loading && campers?.length === 0 && <p>No campers found</p>}
-        {!loading && campers?.length < campersFromStore.length && (
+        {!loading && campers?.length < campersFromStore?.length && (
           <Button onClick={loadMoreHandler} outlined className={classes['load-more-button']}>
             Load more
           </Button>
