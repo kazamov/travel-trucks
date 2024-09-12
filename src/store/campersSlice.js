@@ -53,21 +53,24 @@ const campersSlice = createSlice({
         state.loading = false;
         state.error = action.payload;
       })
-      .addCase(fetchCamper.pending, (state, action) => {
-        state.items.push({ id: null, ...action.meta.arg });
+      .addCase(fetchCamper.pending, state => {
+        state.loading = true;
         state.error = null;
       })
       .addCase(fetchCamper.fulfilled, (state, action) => {
-        const newItemIndex = state.items.findIndex(
-          item => item.name === action.payload.name && item.number === action.payload.number,
-        );
-        state.items[newItemIndex] = action.payload;
+        if (!state.items) {
+          state.items = [];
+        }
+        const camperIndex = state.items.findIndex(camper => camper.id === action.payload.id);
+        if (camperIndex !== -1) {
+          state.items[camperIndex] = action.payload;
+        } else {
+          state.items.push(action.payload);
+        }
+        state.loading = false;
       })
       .addCase(fetchCamper.rejected, (state, action) => {
-        const newItemIndex = state.items.findIndex(
-          item => item.name === action.meta.arg.name && item.number === action.meta.arg.number,
-        );
-        state.items.splice(newItemIndex, 1);
+        state.loading = false;
         state.error = action.payload;
       });
   },
@@ -105,6 +108,10 @@ export const selectFilteredCampers = createSelector(
     });
   },
 );
+
+export const selectCamperById = id => {
+  return createSelector(selectCampers, campers => campers?.find(camper => camper.id === id));
+};
 
 export const selectIsFavorite = id => {
   return createSelector(selectFavorites, favorites => favorites.includes(id));

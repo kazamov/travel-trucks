@@ -1,5 +1,5 @@
 .catalog-page {
-  padding: 3rem 4rem;
+  padding: 3rem 4rem 3.25rem;
   display: grid;
   grid-template-columns: minmax(10rem, 22.5rem) minmax(10rem, 55.5rem);
   column-gap: 4rem;

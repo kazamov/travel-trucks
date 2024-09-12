@@ -1,0 +1,80 @@
+.camper-page {
+  display: flex;
+  flex-direction: column;
+  padding: 3rem 4rem 5rem;
+
+  .name {
+    color: var(--main-color);
+    margin-bottom: 0.5rem;
+  }
+
+  .rating-location {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .price {
+    color: var(--main-color);
+    margin-bottom: 1.75rem;
+  }
+
+  .gallery {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 1.75rem;
+
+    .gallery-image {
+      object-fit: cover;
+      object-position: 55%;
+      border-radius: 10px;
+      background-color: var(--gray-light-color);
+    }
+  }
+
+  .description {
+    color: var(--text-color);
+    margin-bottom: 3.75rem;
+  }
+
+  .tabs {
+    :global(.p-tabview-nav) {
+      display: flex;
+      gap: 1.25rem;
+      border-bottom-width: 1px;
+      border-bottom-color: var(--gray-light-color);
+    }
+
+    :global(.p-tabview-nav-link) {
+      position: relative;
+      color: var(--main-color);
+      font-size: 1.25rem;
+      font-weight: 600;
+      line-height: 1.2;
+      padding: 0 0 1.5rem;
+      border: none;
+      margin: 0;
+
+      &::after {
+        content: '';
+        visibility: hidden;
+        display: block;
+        width: 100%;
+        border-bottom: 3px solid transparent;
+        position: absolute;
+        bottom: 0;
+        transition: visibility 0.3s ease;
+      }
+    }
+
+    :global(.p-tabview-nav li:hover:not(.p-tabview-selected) .p-tabview-nav-link::after) {
+      visibility: visible;
+      border-bottom-color: var(--gray-light-color);
+    }
+
+    :global(.p-tabview-nav li.p-tabview-selected.p-highlight .p-tabview-nav-link::after) {
+      visibility: visible;
+      border-bottom-color: var(--button-color);
+    }
+  }
+}

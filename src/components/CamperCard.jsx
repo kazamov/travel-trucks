@@ -1,7 +1,10 @@
+import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import clsx from 'clsx';
 
-import Button from './Button';
 import classes from './CamperCard.module.css';
+
+import Button from './Button';
 import Chip from './Chip';
 import {
   Diagram,
@@ -10,26 +13,17 @@ import {
   Grid1_2,
   Grid3_3,
   Kitchen,
-  Map,
   Petrol,
   TV,
   UIRadios,
   Wind,
 } from './Icons';
-import { Link } from 'react-router-dom';
-import Rating from './Rating';
+import CamperRating from './CamperRating';
+import CamperLocation from './CamperLocation';
 import { useCallback, useMemo } from 'react';
 import AddToFavoriteButton from './AddToFavoriteButton';
-import { useDispatch, useSelector } from 'react-redux';
 import { addToFavorites, removeFromFavorites, selectIsFavorite } from '../store/campersSlice';
-
-const FORMATTER = new Intl.NumberFormat('en-IE', {
-  style: 'currency',
-  currency: 'EUR',
-  minimumFractionDigits: 2,
-  maximumFractionDigits: 2,
-  useGrouping: false,
-});
+import { FORMATTER } from '../lib/formatter';
 
 function CamperCard({ camper }) {
   const dispatch = useDispatch();
@@ -76,7 +70,7 @@ function CamperCard({ camper }) {
     } else if (camper.form === 'alcove') {
       badges.push({ key: 'Alcove', component: <Chip icon={Grid3_3} label="Alcove" /> });
     } else {
-      badges.push({ key: 'Panel Truck', component: <Chip icon={Grid} label="Panel Truck" /> });
+      badges.push({ key: 'Panel Truck', component: <Chip icon={Grid1_2} label="Panel Truck" /> });
     }
 
     if (camper.AC) {
@@ -108,19 +102,8 @@ function CamperCard({ camper }) {
           />
         </div>
         <div className={clsx(classes['info-section'], classes['pt8'])}>
-          <div className={classes['rating']}>
-            <Rating stars={1} value={1} />
-            <Link
-              className={clsx(classes['rating-link'], 'body')}
-              to={`/catalog/${camper.id}/reviews`}
-            >
-              {camper.rating}({camper.reviews.length} Reviews)
-            </Link>
-          </div>
-          <div className={classes['location']}>
-            <Map width={16} height={16} />
-            <span className="body">{camper.location}</span>
-          </div>
+          <CamperRating camper={camper} />
+          <CamperLocation className={classes['location']} location={camper.location} />
         </div>
         <div className={classes['info-section']}>
           <p className={clsx(classes['description'], 'body')}>{camper.description}</p>

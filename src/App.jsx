@@ -27,7 +27,7 @@ const router = createBrowserRouter([
         element: <CamperPage />,
         children: [
           {
-            path: 'features',
+            path: '',
             element: <Features />,
           },
           {

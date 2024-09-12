@@ -1,0 +1,14 @@
+.rating {
+  display: flex;
+  gap: 0.25rem;
+  align-items: center;
+
+  .rating-link {
+    color: var(--main-color);
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

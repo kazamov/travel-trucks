@@ -45,26 +45,8 @@
     margin-left: 0.75rem;
   }
 
-  .rating {
-    display: flex;
-    gap: 0.25rem;
-    align-items: center;
-
-    .rating-link {
-      color: var(--main-color);
-      text-decoration: none;
-
-      &:hover {
-        text-decoration: underline;
-      }
-    }
-  }
-
   .location {
     margin-left: 1rem;
-    display: flex;
-    align-items: center;
-    gap: 0.25rem;
   }
 
   .description {
