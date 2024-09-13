@@ -57,7 +57,7 @@ function CamperCard({ camper }) {
           <CamperFeatures camper={camper} />
         </div>
         <div className={clsx(classes['info-section'], classes['mt-auto'])}>
-          <Link to={`/catalog/${camper.id}`}>
+          <Link to={`/catalog/${camper.id}`} target="_blank">
             <Button className={classes['show-more-button']}>Show more</Button>
           </Link>
         </div>
