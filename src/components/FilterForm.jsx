@@ -63,7 +63,7 @@ function FilterForm({ onSubmit }) {
       <label className={clsx(classes['filters-label'], 'body2')}>Filters</label>
       <div className={clsx(classes['filters-section'], classes['vehicle-equipment-section'])}>
         <h3 className={clsx(classes['filters-section-title'], 'h3')}>Vehicle equipment</h3>
-        <hr className={classes['filters-section-separator']} />
+        <hr className="hr" />
         <ul className={classes['filter-cards']}>
           <li>
             <FilterCard
@@ -109,7 +109,7 @@ function FilterForm({ onSubmit }) {
       </div>
       <div className={clsx(classes['filters-section'], classes['vehicle-type-section'])}>
         <h3 className={clsx(classes['filters-section-title'], 'h3')}>Vehicle type</h3>
-        <hr className={classes['filters-section-separator']} />
+        <hr className="hr" />
         <ul className={classes['filter-cards']}>
           <li>
             <FilterCard

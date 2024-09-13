@@ -6,3 +6,29 @@
   border-radius: 10px;
   background-color: var(--inputs-color);
 }
+
+.vehicle-details {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.title {
+  color: var(--main-color);
+}
+
+.details-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  row-gap: 1rem;
+  color: var(--main-color);
+}
+
+.right-column {
+  justify-self: flex-end;
+}
+
+.form-value {
+  text-transform: capitalize;
+}
