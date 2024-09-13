@@ -8,7 +8,7 @@ import classes from './HomePage.module.css';
 
 function HomePage() {
   useEffect(() => {
-    document.title = 'Catalog | Travel Trucks';
+    document.title = 'Welcome to Travel Trucks';
   }, []);
 
   return (

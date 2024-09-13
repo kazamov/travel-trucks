@@ -1,0 +1,27 @@
+.name {
+  margin-bottom: 0.5rem;
+}
+
+.rating-location {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.price {
+  margin-bottom: 1.75rem;
+}
+
+.gallery {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 1.75rem;
+
+  .gallery-image {
+    border-radius: 10px;
+  }
+}
+
+.description {
+  margin-bottom: 3.75rem;
+}

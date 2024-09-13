@@ -1,0 +1,26 @@
+.camper-features {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.feature {
+  border-radius: 6.25rem;
+}
+
+.vehicle-details {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.details-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  row-gap: 1rem;
+}
+
+.right-column {
+  justify-self: flex-end;
+}

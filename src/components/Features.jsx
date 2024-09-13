@@ -7,6 +7,7 @@ import { selectCamperById, selectLoading } from '../store/campersSlice';
 
 import CamperFeatures from './CamperFeatures';
 import classes from './Features.module.css';
+import FeaturesSkeleton from './FeaturesSkeleton';
 
 function Features() {
   const { id } = useParams();
@@ -14,6 +15,9 @@ function Features() {
   const loading = useSelector(selectLoading);
 
   const vehicleDetails = useMemo(() => {
+    if (!camper) {
+      return [];
+    }
     return [
       { label: 'Form', value: camper.form, valueClassName: classes['form-value'] },
       { label: 'Length', value: camper.length },
@@ -24,31 +28,28 @@ function Features() {
     ];
   }, [camper]);
 
-  if (loading) {
-    return <p>Loading...</p>;
-  }
-
-  if (!camper) {
-    return <p>Camper not found</p>;
-  }
-
   return (
     <div className={classes['features']}>
-      <CamperFeatures camper={camper} />
-      <div className={classes['vehicle-details']}>
-        <h3 className={clsx(classes['title'], 'h3')}>Vehicle details</h3>
-        <hr className="hr" />
-        <div className={classes['details-grid']}>
-          {vehicleDetails.map(({ label, value, valueClassName }) => (
-            <Fragment key={label}>
-              <span className="body2">{label}</span>
-              <span className={clsx(valueClassName, classes['right-column'], 'body2')}>
-                {value}
-              </span>
-            </Fragment>
-          ))}
-        </div>
-      </div>
+      {loading && <FeaturesSkeleton />}
+      {!loading && camper && (
+        <>
+          <CamperFeatures camper={camper} />
+          <div className={classes['vehicle-details']}>
+            <h3 className={clsx(classes['title'], 'h3')}>Vehicle details</h3>
+            <hr className="hr" />
+            <div className={classes['details-grid']}>
+              {vehicleDetails.map(({ label, value, valueClassName }) => (
+                <Fragment key={label}>
+                  <span className="body2">{label}</span>
+                  <span className={clsx(valueClassName, classes['right-column'], 'body2')}>
+                    {value}
+                  </span>
+                </Fragment>
+              ))}
+            </div>
+          </div>
+        </>
+      )}
     </div>
   );
 }

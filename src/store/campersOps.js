@@ -17,6 +17,9 @@ export const fetchCamper = createAsyncThunk('contacts/fetchCamperById', async (i
     const response = await axios.get(`/campers/${id}`);
     return response.data;
   } catch (error) {
+    if (error.status === 404) {
+      return thunkAPI.rejectWithValue('Camper you are looking for is not found');
+    }
     return thunkAPI.rejectWithValue(error.message);
   }
 });
