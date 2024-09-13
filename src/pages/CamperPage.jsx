@@ -1,4 +1,4 @@
-import { useEffect, useCallback } from 'react';
+import { useEffect, useCallback, useId } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Outlet, useParams, useMatch, useNavigate } from 'react-router-dom';
 import clsx from 'clsx';
@@ -19,9 +19,10 @@ function CamperPage() {
   const { id } = useParams();
   const camper = useSelector(selectCamperById(id));
   const loading = useSelector(selectLoading);
-  const featuresSelected = useMatch('/catalog/:id');
-  const reviewsSelected = useMatch('/catalog/:id/reviews');
+  const featuresSelected = Boolean(useMatch('/catalog/:id'));
+  const reviewsSelected = Boolean(useMatch('/catalog/:id/reviews'));
   const selectedTab = featuresSelected ? 0 : reviewsSelected ? 1 : 0;
+  const reviewsActionHeaderId = useId();
 
   const tabChangeHandler = useCallback(
     ({ index }) => {
@@ -36,11 +37,15 @@ function CamperPage() {
   }, []);
 
   useEffect(() => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth',
-    });
-  }, []);
+    if (camper && reviewsSelected) {
+      document.getElementById(reviewsActionHeaderId)?.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth',
+      });
+    }
+  }, [reviewsSelected, reviewsActionHeaderId, camper]);
 
   useEffect(() => {
     if (!camper) {
@@ -85,7 +90,11 @@ function CamperPage() {
           <Outlet />
           <BookCamperForm camper={camper} />
         </TabPanel>
-        <TabPanel contentClassName={classes['tab-panel']} header="Reviews">
+        <TabPanel
+          pt={{ headerAction: { id: reviewsActionHeaderId } }}
+          contentClassName={classes['tab-panel']}
+          header="Reviews"
+        >
           <Outlet />
           <BookCamperForm camper={camper} />
         </TabPanel>

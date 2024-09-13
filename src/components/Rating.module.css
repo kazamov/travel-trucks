@@ -1,4 +1,6 @@
 .rating {
+  gap: 0.25rem;
+
   &:global(.p-rating.p-readonly .p-rating-item.p-focus) {
     outline: none;
     box-shadow: none;

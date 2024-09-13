@@ -1,4 +1,4 @@
-import { Fragment } from 'react';
+import { Fragment, useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import clsx from 'clsx';
@@ -7,7 +7,6 @@ import { selectCamperById, selectLoading } from '../store/campersSlice';
 
 import CamperFeatures from './CamperFeatures';
 import classes from './Features.module.css';
-import { useMemo } from 'react';
 
 function Features() {
   const { id } = useParams();

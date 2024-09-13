@@ -1,0 +1,9 @@
+.reviews {
+  padding-top: 0.75rem;
+
+  .reviews-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2.75rem;
+  }
+}
