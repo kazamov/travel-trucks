@@ -3,12 +3,6 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import NotFoundPage from './pages/NotFoundPage';
 import Layout from './components/Layout';
 
-import HomePage from './pages/HomePage';
-import CatalogPage from './pages/CatalogPage';
-import CamperPage from './pages/CamperPage';
-import Features from './components/Features';
-import Reviews from './components/Reviews';
-
 const router = createBrowserRouter([
   {
     element: <Layout />,
@@ -16,23 +10,48 @@ const router = createBrowserRouter([
     children: [
       {
         path: '/',
-        element: <HomePage />,
+        lazy: async () => {
+          const { default: Component } = await import('./pages/HomePage');
+          return {
+            Component,
+          };
+        },
       },
       {
         path: '/catalog',
-        element: <CatalogPage />,
+        lazy: async () => {
+          const { default: Component } = await import('./pages/CatalogPage');
+          return {
+            Component,
+          };
+        },
       },
       {
         path: '/catalog/:id',
-        element: <CamperPage />,
+        lazy: async () => {
+          const { default: Component } = await import('./pages/CamperPage');
+          return {
+            Component,
+          };
+        },
         children: [
           {
             path: '',
-            element: <Features />,
+            lazy: async () => {
+              const { default: Component } = await import('./components/Features');
+              return {
+                Component,
+              };
+            },
           },
           {
             path: 'reviews',
-            element: <Reviews />,
+            lazy: async () => {
+              const { default: Component } = await import('./components/Reviews');
+              return {
+                Component,
+              };
+            },
           },
         ],
       },
