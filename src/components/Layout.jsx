@@ -30,7 +30,7 @@ function Layout() {
     <>
       <header className={classes['header']}>
         <Link className={classes['logo-link']} to="/">
-          <img src="/logo.svg" alt="Travel Trucks" />
+          <img src="/logo.svg" alt="Travel Trucks" width={136} height={16} />
         </Link>
         <nav className={classes['nav']}>
           <ul className={classes['nav-list']}>
